@@ -1,0 +1,291 @@
+Делал на хостовой машине, где требовалось выполнял на виртуалке.
+vanadiy@vanadiy:~$ sudo timedatectl set-timezone Europe/Minsk
+vanadiy@vanadiy:~$ sudo localectl set-locale Lang=en_IN.UTF-8
+printf "Welcome to TMS!!!  %s (%s %s %s)\n" "$DISTRIB_DESCRIPTION" "$(uname -o)" "$(uname -r)" "$(uname -m)"
+vanadiy@vanadiy:~$uname -a
+Linux ubuntu 5.19.0-45-generic #46~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jun 7 15:06:04 UTC 20 x86_64 x86_64 x86_64 GNU/Linux
+vanadiy@ubuntu:~$ lsmod >> ubuntu.txt
+Module                  Size  Used by
+rfcomm                 86016  4
+vboxnetadp             28672  0
+vboxnetflt             28672  0
+vboxdrv               573440  2 vboxnetadp,vboxnetflt
+ccm                    20480  3
+cmac                   16384  3
+algif_hash             16384  1
+algif_skcipher         16384  1
+af_alg                 32768  6 algif_hash,algif_skcipher
+bnep                   28672  2
+binfmt_misc            24576  1
+nls_iso8859_1          16384  1
+intel_rapl_msr         20480  0
+intel_rapl_common      40960  1 intel_rapl_msr
+x86_pkg_temp_thermal    20480  0
+snd_hda_codec_hdmi     86016  1
+intel_powerclamp       24576  0
+snd_hda_codec_realtek   163840  1
+ath3k                  24576  0
+coretemp               24576  0
+snd_hda_codec_generic   102400  1 snd_hda_codec_realtek
+btusb                  61440  0
+uvcvideo              114688  0
+btrtl                  24576  1 btusb
+ledtrig_audio          16384  1 snd_hda_codec_generic
+kvm_intel             438272  0
+btbcm                  24576  1 btusb
+videobuf2_vmalloc      20480  1 uvcvideo
+videobuf2_memops       20480  1 videobuf2_vmalloc
+btintel                40960  1 btusb
+snd_hda_intel          53248  3
+videobuf2_v4l2         32768  1 uvcvideo
+kvm                  1138688  1 kvm_intel
+btmtk                  16384  1 btusb
+videobuf2_common       81920  4 videobuf2_vmalloc,videobuf2_v4l2,uvcvideo,videobuf2_memops
+bluetooth             827392  35 btrtl,btmtk,btintel,btbcm,bnep,ath3k,btusb,rfcomm
+snd_intel_dspcfg       36864  1 snd_hda_intel
+snd_intel_sdw_acpi     20480  1 snd_intel_dspcfg
+snd_hda_codec         176128  4 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec_realtek
+crct10dif_pclmul       16384  1
+ecdh_generic           16384  2 bluetooth
+videodev              274432  3 videobuf2_v4l2,uvcvideo,videobuf2_common
+snd_hda_core          114688  5 snd_hda_codec_generic,snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,snd_hda_codec_realtek
+ecc                    40960  1 ecdh_generic
+mc                     65536  4 videodev,videobuf2_v4l2,uvcvideo,videobuf2_common
+snd_hwdep              20480  1 snd_hda_codec
+ghash_clmulni_intel    16384  0
+mei_hdcp               24576  0
+mei_pxp                20480  0
+i915                 3133440  16
+ath9k                 221184  0
+snd_pcm               159744  4 snd_hda_codec_hdmi,snd_hda_intel,snd_hda_codec,snd_hda_core
+ath9k_common           45056  1 ath9k
+cryptd                 24576  1 ghash_clmulni_intel
+drm_buddy              20480  1 i915
+snd_seq_midi           20480  0
+snd_seq_midi_event     16384  1 snd_seq_midi
+rapl                   20480  0
+snd_rawmidi            45056  1 snd_seq_midi
+ttm                    98304  1 i915
+ath9k_hw              614400  2 ath9k_common,ath9k
+drm_display_helper    184320  1 i915
+snd_seq                77824  2 snd_seq_midi,snd_seq_midi_event
+snd_seq_device         16384  3 snd_seq,snd_seq_midi,snd_rawmidi
+intel_cstate           20480  0
+ath                    36864  3 ath9k_common,ath9k,ath9k_hw
+cec                    81920  2 drm_display_helper,i915
+mac80211             1323008  1 ath9k
+rc_core                65536  1 cec
+cfg80211             1052672  4 ath9k_common,ath9k,ath,mac80211
+drm_kms_helper        200704  2 drm_display_helper,i915
+snd_timer              40960  2 snd_seq,snd_pcm
+mei_me                 53248  2
+i2c_algo_bit           16384  1 i915
+fb_sys_fops            16384  1 drm_kms_helper
+libarc4                16384  1 mac80211
+syscopyarea            16384  1 drm_kms_helper
+sysfillrect            20480  1 drm_kms_helper
+sysimgblt              20480  1 drm_kms_helper
+joydev                 32768  0
+input_leds             16384  0
+snd                   114688  17 snd_hda_codec_generic,snd_seq,snd_seq_device,snd_hda_codec_hdmi,snd_hwdep,snd_hda_intel,snd_hda_codec,snd_hda_codec_realtek,snd_timer,snd_pcm,snd_rawmidi
+mei                   143360  5 mei_hdcp,mei_pxp,mei_me
+acer_wmi               28672  0
+soundcore              16384  1 snd
+serio_raw              20480  0
+mac_hid                16384  0
+sparse_keymap          16384  1 acer_wmi
+wmi_bmof               16384  0
+sch_fq_codel           24576  2
+msr                    16384  0
+parport_pc             53248  0
+ppdev                  24576  0
+lp                     28672  0
+parport                73728  3 parport_pc,lp,ppdev
+ramoops                32768  0
+reed_solomon           28672  1 ramoops
+drm                   581632  10 drm_kms_helper,drm_display_helper,drm_buddy,i915,ttm
+pstore_blk             16384  0
+pstore_zone            32768  1 pstore_blk
+efi_pstore             16384  0
+ip_tables              32768  0
+x_tables               57344  1 ip_tables
+autofs4                45056  2
+rtsx_pci_sdmmc         36864  0
+crc32_pclmul           16384  0
+broadcom               24576  1
+bcm_phy_lib            28672  1 broadcom
+psmouse               180224  0
+xhci_pci               24576  0
+ahci                   49152  2
+i2c_i801               36864  0
+tg3                   204800  0
+libahci                49152  1 ahci
+lpc_ich                28672  0
+i2c_smbus              20480  1 i2c_i801
+xhci_pci_renesas       20480  1 xhci_pci
+rtsx_pci              106496  1 rtsx_pci_sdmmc
+wmi                    32768  2 acer_wmi,wmi_bmof
+video                  65536  2 acer_wmi,i915
+vanadiy@ubuntu:~$ lscpu
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Address sizes:                   36 bits physical, 48 bits virtual
+Byte Order:                      Little Endian
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Vendor ID:                       GenuineIntel
+Model name:                      Intel(R) Core(TM) i3-2377M CPU @ 1.50GHz
+CPU family:                      6
+Model:                           42
+Thread(s) per core:              2
+Core(s) per socket:              2
+Socket(s):                       1
+Stepping:                        7
+CPU max MHz:                     1500,0000
+CPU min MHz:                     800,0000
+BogoMIPS:                        2993.28
+Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer xsave avx lahf_lm epb pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm arat pln pts md_clear flush_l1d
+Virtualization:                  VT-x
+L1d cache:                       64 KiB (2 instances)
+L1i cache:                       64 KiB (2 instances)
+L2 cache:                        512 KiB (2 instances)
+L3 cache:                        3 MiB (1 instance)
+NUMA node(s):                    1
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     KVM: Mitigation: VMX disabled
+Vulnerability L1tf:              Mitigation; PTE Inversion; VMX conditional cache flushes, SMT vulnerable
+Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT vulnerable
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Unknown: No mitigations
+Vulnerability Retbleed:          Not affected
+Vulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, IBPB conditional, IBRS_FW, STIBP conditional, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+vanadiy@ubuntu:~$ sudo dmidecode --type 17
+# dmidecode 3.3
+Getting SMBIOS data from sysfs.
+SMBIOS 2.7 present.
+
+Handle 0x001A, DMI type 17, 34 bytes
+Memory Device
+	Array Handle: 0x0019
+	Error Information Handle: Not Provided
+	Total Width: 64 bits
+	Data Width: 64 bits
+	Size: 2 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM0
+	Bank Locator: BANK 0
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1333 MT/s
+	Manufacturer: Unknown
+	Serial Number: 00000000
+	Asset Tag: Unknown
+	Part Number: Not Specified
+	Rank: 1
+	Configured Memory Speed: 1333 MT/s
+
+Handle 0x001B, DMI type 17, 34 bytes
+Memory Device
+	Array Handle: 0x0019
+	Error Information Handle: Not Provided
+	Total Width: 64 bits
+	Data Width: 64 bits
+	Size: 2 GB
+	Form Factor: SODIMM
+	Set: None
+	Locator: DIMM1
+	Bank Locator: BANK 2
+	Type: DDR3
+	Type Detail: Synchronous
+	Speed: 1600 MT/s
+	Manufacturer: ELPIDA
+	Serial Number: 190C28F3
+	Asset Tag: Unknown
+	Part Number: EBJ20UF8BDU0-GN-F 
+	Rank: 1
+	Configured Memory Speed: 1333 MT/s
+
+vanadiy@vanadiy:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           373M  1,9M  371M   1% /run
+/dev/sda2       292G   24G  254G   9% /
+tmpfs           1,9G     0  1,9G   0% /dev/shm
+tmpfs           5,0M  4,0K  5,0M   1% /run/lock
+/dev/sda1       511M  6,1M  505M   2% /boot/efi
+tmpfs           373M  108K  373M   1% /run/user/1000
+vanadiy@vanadiy:~$ free
+               total        used        free      shared  buff/cache   available
+Mem:         3815708     1008736     1233916      185892     1573056     2377040
+Swap:        4190204           0     4190204
+vanadiy@ubuntu:~$ sudo adduser new_admin_user
+vanadiy@ubuntu:~$ sudo usermod -aG sudo new_admin_user
+vanadiy@vanadiy:~$ shh-copy-id -i new_admin_user@192.168.100.4
+vanadiy@ubuntu:~$ nano etc/ssh/sshd_config
+PasswordAuthentication no
+vanadiy@vanadiy:~$ cat /proc/filesystems
+nodev	sysfs
+nodev	tmpfs
+nodev	bdev
+nodev	proc
+nodev	cgroup
+nodev	cgroup2
+nodev	cpuset
+nodev	devtmpfs
+nodev	configfs
+nodev	debugfs
+nodev	tracefs
+nodev	securityfs
+nodev	sockfs
+nodev	bpf
+nodev	pipefs
+nodev	ramfs
+nodev	hugetlbfs
+nodev	devpts
+	ext3
+	ext2
+	ext4
+	squashfs
+	vfat
+nodev	ecryptfs
+	fuseblk
+nodev	fuse
+nodev	fusectl
+nodev	efivarfs
+nodev	mqueue
+nodev	pstore
+nodev	autofs
+nodev	binfmt_misc
+	ntfs3
+vanadiy@ubuntu:~ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:00:30:ba brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.4/24 metric 100 brd 192.168.100.255 scope global dynamic enp0s3
+       valid_lft 86016sec preferred_lft 86016sec
+    inet6 fe80::a00:27ff:fe00:30ba/64 scope link 
+       valid_lft forever preferred_lft forever
+vanadiy@ubuntu:~ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:00:30:ba brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.4/24 metric 100 brd 192.168.100.255 scope global dynamic enp0s3
+       valid_lft 86350sec preferred_lft 86350sec
+    inet6 fe80::a00:27ff:fe00:30ba/64 scope link 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 08:00:27:c3:d8:e4 brd ff:ff:ff:ff:ff:f
