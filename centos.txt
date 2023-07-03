@@ -1,0 +1,202 @@
+
+[root@cnt7 ~]# localectl
+   System Locale: LANG=en_US.UTF-8
+       VC Keymap: us
+      X11 Layout: us
+[root@cnt7 ~]# localectl set-locale LANG=ru_RU.UTF-8
+[root@cnt7 ~]# nano modt
+[root@cnt7 ~]# cat modt
+Hello TMS!!!
+[root@cnt7 ~]# uname -a
+Linux cnt7.lan 3.10.0-1160.92.1.el7.x86_64 #1 SMP Tue Jun 20 11:48:01 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
+[root@cnt7 ~]# lsmod
+Module                  Size  Used by
+iosf_mbi               15582  0 
+crc32_pclmul           13133  0 
+ppdev                  17671  0 
+ghash_clmulni_intel    13273  0 
+sg                     40719  0 
+pcspkr                 12718  0 
+cryptd                 21190  1 ghash_clmulni_intel
+parport_pc             28205  0 
+i2c_piix4              22401  0 
+parport                46395  2 ppdev,parport_pc
+video                  24538  0 
+ip_tables              27126  0 
+xfs                  1014152  2 
+libcrc32c              12644  1 xfs
+sr_mod                 22416  0 
+cdrom                  46696  1 sr_mod
+sd_mod                 46281  3 
+crc_t10dif             12912  1 sd_mod
+crct10dif_generic      12647  0 
+ata_generic            12923  0 
+pata_acpi              13053  0 
+vmwgfx                296089  1 
+drm_kms_helper        186531  1 vmwgfx
+syscopyarea            12529  1 drm_kms_helper
+sysfillrect            12701  1 drm_kms_helper
+sysimgblt              12640  1 drm_kms_helper
+fb_sys_fops            12703  1 drm_kms_helper
+ttm                   100769  1 vmwgfx
+drm                   468454  4 ttm,drm_kms_helper,vmwgfx
+ahci                   34056  2 
+ata_piix               35052  0 
+libahci                31992  1 ahci
+libata                247190  5 ahci,pata_acpi,libahci,ata_generic,ata_piix
+e1000                 137624  0 
+crct10dif_pclmul       14307  1 
+crct10dif_common       12595  3 crct10dif_pclmul,crct10dif_generic,crc_t10dif
+crc32c_intel           22094  1 
+serio_raw              13434  0 
+drm_panel_orientation_quirks    17180  1 drm
+dm_mirror              22326  0 
+dm_region_hash         20813  1 dm_mirror
+dm_log                 18411  2 dm_region_hash,dm_mirror
+dm_mod                128595  8 dm_log,dm_mirror
+[root@cnt7 ~]# lscpu
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                2
+[root@cnt7 ~]# lshw -class memory
+On-line CPU(s) list:   0,1
+Thread(s) per core:    1
+Core(s) per socket:    2
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 42
+Model name:            Intel(R) Core(TM) i3-2377M CPU @ 1.50GHz
+Stepping:              7
+CPU MHz:               1496.530
+BogoMIPS:              2993.06
+Hypervisor vendor:     KVM
+Virtualization type:   full
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              3072K
+NUMA node0 CPU(s):     0,1
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc eagerfpu pni pclmulqdq ssse3 cx16 sse4_1 sse4_2 x2apic popcnt xsave avx hypervisor lahf_lm rsb_ctxsw md_clear flush_l1d
+[root@cnt7 ~]# lshw -class memory
+  *-firmware
+       description: BIOS
+       vendor: innotek GmbH
+       physical id: 0
+       version: VirtualBox
+       date: 12/01/2006
+       size: 128KiB
+       capacity: 128KiB
+       capabilities: isa pci cdboot bootselect int9keyboard int10video acpi
+  *-memory
+       description: System memory
+       physical id: 1
+       size: 1GiB
+[root@cnt7 ~]# lshw -class disk
+  *-cdrom
+       description: DVD reader
+       product: CD-ROM
+       vendor: VBOX
+       physical id: 0.0.0
+       bus info: scsi@1:0.0.0
+       logical name: /dev/cdrom
+       logical name: /dev/sr0
+       version: 1.0
+       capabilities: removable audio dvd
+       configuration: ansiversion=5 status=ready
+     *-medium
+          physical id: 0
+          logical name: /dev/cdrom
+  *-disk
+       description: ATA Disk
+       product: VBOX HARDDISK
+       vendor: VirtualBox
+       physical id: 0.0.0
+       bus info: scsi@2:0.0.0
+       logical name: /dev/sda
+       version: 1.0
+       serial: VBdb5c0fee-5a08d37c
+       size: 29GiB (31GB)
+       capabilities: partitioned partitioned:dos
+       configuration: ansiversion=5 logicalsectorsize=512 sectorsize=512 signature=00013ddb
+[root@cnt7 ~]# df -h
+Файловая система           Размер Использовано  Дост Использовано% Cмонтировано в
+devtmpfs                     484M            0  484M            0% /dev
+tmpfs                        496M            0  496M            0% /dev/shm
+tmpfs                        496M         6,7M  489M            2% /run
+tmpfs                        496M            0  496M            0% /sys/fs/cgroup
+/dev/mapper/centos_10-root    27G         1,6G   26G            6% /
+/dev/sda1                   1014M         168M  847M           17% /boot
+tmpfs                        100M            0  100M            0% /run/user/0
+[root@cnt7 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:1e:a2:7c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.5/24 brd 192.168.100.255 scope global noprefixroute dynamic enp0s3
+       valid_lft 83727sec preferred_lft 83727sec
+    inet6 fe80::37a:701e:32c6:cf57/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+
+[root@cnt7 ~]# ip a
+1:lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:1e:a2:7c brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.5/24 brd 192.168.100.255 scope global noprefixroute dynamic enp0s3
+       valid_lft 86017sec preferred_lft 86017sec
+    inet6 fe80::37a:701e:32c6:cf57/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 08:00:27:fc:bb:e8 brd ff:ff:ff:ff:ff:ff
+[root@cnt7 ~]# vmstat -s
+      1014388 K total memory
+       101556 K used memory
+        57984 K active memory
+        59192 K inactive memory
+       823280 K free memory
+         2124 K buffer memory
+        87428 K swap cache
+      2097148 K total swap
+            0 K used swap
+      2097148 K free swap
+          326 non-nice user cpu ticks
+            0 nice user cpu ticks
+          772 system cpu ticks
+       113704 idle cpu ticks
+         2028 IO-wait cpu ticks
+            0 IRQ cpu ticks
+           95 softirq cpu ticks
+            0 stolen cpu ticks
+        91869 pages paged in
+         5996 pages paged out
+            0 pages swapped in
+            0 pages swapped out
+        95663 interrupts
+        94967 CPU context switches
+   1688385883 boot time
+         1269 forks
+
+[root@cnt7 ~]# adduser new_admin_user
+[root@cnt7 ~]# passwd new_admin_user
+[root@cnt7 ~]# gpasswd -a new_admin_user wheel
+Добавление пользователя new_admin_user в группу wheel
+local 
+vanadiy@vanadiy:$ ssh-keygen -t rsa
+vanadiy@vanadiy:$ ssh-copy-id new_admin_user@192.168.100.5
+vanadiy@vanadiy:$ ssh new_admin_user@192.168.100.5
+[new_admin_user@cnt7 ~]$
+[root@cnt7 ~]# nano /etc/ssh/sshd_config
+Match User new_admin_user
+        PasswordAuthentication no
+
